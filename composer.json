@@ -1,0 +1,9 @@
+{
+"require": { 
+             "klein/klein": "dev-master",
+             "pimple/pimple": "2.0.*@dev",
+             "doctrine/dbal": "2.5.*@dev",
+             "twig/twig": "1.15.*@dev",
+             "respect/validation": "dev-master"
+    }
+}

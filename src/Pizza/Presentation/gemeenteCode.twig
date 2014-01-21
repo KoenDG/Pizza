@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>GemeenteCode</title>
+        <style>
+            table { border-collapse: collapse; } 
+            td, th { border: 1px solid black; padding: 3px; } 
+            th { background-color: #ddd}
+        </style>
+    </head>
+    <body>
+        <h1>Gemeentenlijst</h1>
+        <form id="gCodeForm" method="post" action="index.php">
+            <input name="g" placeholder="Typ uw gemeente in.">
+            <input type="submit" formenctype="text/plain" value="Search">
+        </form>
+        <br />
+        {% if app.request.isXmlHttpRequest %}
+        This is Ajax request
+        {% else %}
+        No, this is not an ajax request
+        {% endif %}
+    </body>
+    <script src="Libraries/Jquery/jquery-2.0.3.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#gCodeForm").on('submit', function(e){
+                e.preventDefault();
+            });
+        });
+    </script>
+</html>
