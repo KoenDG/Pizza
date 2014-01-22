@@ -40,4 +40,8 @@ class Gemeente {
     public function setLeverbaarheid($leverbaar) {
         $this->leverbaar = $leverbaar;
     }
+    
+    public function toArray() {
+        return array("id" => $this->id, "naam" => $this->naam, "code" => $this->code, "leverbaar" => $this->leverbaar);
+    }
 }

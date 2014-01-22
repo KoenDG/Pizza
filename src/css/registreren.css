@@ -1,0 +1,20 @@
+fieldset { 
+    overflow: hidden;
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 270px;
+    border: 0;
+}
+
+label { float: left; width: 120px; }
+
+input { width: 120px; }
+
+#regSection {
+    width: 270px;
+    margin: 0 auto;
+}
+
+.formInput {
+    margin: 10px;
+}

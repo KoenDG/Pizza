@@ -12,21 +12,39 @@
     <body>
         <h1>Gemeentenlijst</h1>
         <form id="gCodeForm" method="post" action="index.php">
-            <input name="g" placeholder="Typ uw gemeente in.">
+            <input name="g" placeholder="Typ postcode in.">
             <input type="submit" formenctype="text/plain" value="Search">
         </form>
         <br />
-        {% if app.request.isXmlHttpRequest %}
-        This is Ajax request
-        {% else %}
-        No, this is not an ajax request
-        {% endif %}
+        <div id="gemeenten">&nbsp;</div>
     </body>
     <script src="Libraries/Jquery/jquery-2.0.3.min.js"></script>
     <script>
         $(document).ready(function() {
             $("#gCodeForm").on('submit', function(e){
                 e.preventDefault();
+                //console.log(this.g.value);
+                
+                var jqxhr = $.ajax({
+                    url: "http://localhost/Pizza/ajax.php",
+                    type: "POST",
+                    data: {code: this.g.value},
+                    dataType: "json"
+                }).fail(function(){alert("error")});
+                
+                jqxhr.done(function(data) {
+                    //Merkwaardig probleem. Als ik gewoon de array verstuur uit PHP, krijg ik maar 1 object terug. Als ik de array ga nesten, dan moet ik dit doen.
+                    //Maar anders krijg ik de volledige array now.
+                    setGemeentes(data[0]);
+                });
+                
+                var setGemeentes = function(data) {
+                    for(var i = 0;i<data.length;i++) {
+                        console.log(data[i]);
+                        $("#gemeenten").append("<span class='gemeente'>"+data[i]["naam"]+"</span><br />");
+                    }
+                    
+                }
             });
         });
     </script>

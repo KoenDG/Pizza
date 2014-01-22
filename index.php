@@ -12,8 +12,7 @@ $classLoader->register();
 
 use Pizza\Business\GemeenteService;
 
-$gemeente = GemeenteService::haalGemeenteOp("Bachte-Maria-Leerne");
 $loader = new Twig_Loader_Filesystem("src/Pizza/Presentation");
 $twig = new Twig_Environment($loader);
-$view = $twig->render("gemeenteCode.twig", array( "gemeente" => $gemeente ));
+$view = $twig->render("gemeenteCode.twig");
 print($view);

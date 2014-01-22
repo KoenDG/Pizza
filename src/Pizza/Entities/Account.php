@@ -4,9 +4,9 @@ namespace Pizza\Entities;
 
 class Account {
     
-    private $id,$gemeente_id,$email,$paswoord,$salt,$registratiedatum,$vnaam,$anaam,$leveradres,$huisNr,$telefoon,$isActive,$activationCode,$resetCode,$badLoginAttempts;
+    private $id,$gemeente_id,$email,$paswoord,$salt,$registratiedatum,$vnaam,$anaam,$leveradres,$huisNr,$telefoon;
     
-    public function __construct($id,$gemeente_id,$email,$paswoord,$salt,$registratiedatum,$vnaam,$anaam,$leveradres,$huisNr,$telefoon,$isActive,$activationCode,$resetCode,$badLoginAttempts) {
+    public function __construct($id,$gemeente_id,$email,$paswoord,$salt,$registratiedatum,$vnaam,$anaam,$leveradres,$huisNr,$telefoon) {
         $this->id = $id;
         $this->gemeente_id = $gemeente_id;
         $this->email = $email;
@@ -18,10 +18,6 @@ class Account {
         $this->leveradres = $leveradres;
         $this->huisNr = $huisNr;
         $this->telefoon = $telefoon;
-        $this->isActive = $isActive;
-        $this->activationCode = $activationCode;
-        $this->resetCode = $resetCode;
-        $this->badLoginAttempts = $badLoginAttempts;
     }
     
     public function getId() {
@@ -68,22 +64,6 @@ class Account {
         return $this->telefoon;
     }
     
-    public function getIsActive() {
-        return $this->isActive;
-    }
-    
-    public function getActivationcode() {
-        return $this->activationCode;
-    }
-    
-    public function getresetCode() {
-        return $this->resetCode;
-    }
-    
-    public function getBadloginAttempts() {
-        return $this->badLoginAttempts;
-    }
-    
     public function setGemeenteId($gemeente_id) {
         $this->gemeente_id = $gemeente_id;
     }
@@ -122,22 +102,5 @@ class Account {
     
     public function setTelefoon($telefoon) {
         $this->telefoon = $telefoon;
-    }
-    
-    public function setIsActive($isActive) {
-        $this->isActive = $isActive;
-    }
-    
-    public function setActivationcode($activationcode) {
-        $this->activationCode = $activationcode;
-    }
-    
-    public function setresetCode($resetCode) {
-        $this->resetCode = $resetCode;
-    }
-    
-    public function setBadloginAttempts($badLoginAttempts) {
-        $this->badLoginAttempts = $badLoginAttempts;
-    }
-    
+    }    
 }
