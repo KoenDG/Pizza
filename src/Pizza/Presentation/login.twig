@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>Login</title>
+        <link rel="stylesheet" href="src/css/reset.css">
+        <link rel="stylesheet" href="src/css/global.css">
+        <link rel="stylesheet" href="src/css/registreren.css">
+    </head>
+    <body>
+        {% include 'header.twig' %}
+        <div id="logSection">
+            <form id="loginForm" method="POST" action="login.php">
+                <fieldset>
+                    <legend>Login</legend>
+                    <p class="formInput"><label for="email">Email: </label><input type="email" id="email" name="email" /></p>
+                    <p class="formInput"><label for="paswoord">Paswoord: </label><input type="password" id="paswoord" name="paswoord" /></p>
+                    <p class="formInput"><input type="submit" id="submit" name="submit" value="Verzenden" /></p>
+                    <input type="hidden" name="login" value="Verzenden" />
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

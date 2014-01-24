@@ -6,7 +6,7 @@ class Account {
     
     private $id,$gemeente_id,$email,$paswoord,$salt,$registratiedatum,$vnaam,$anaam,$leveradres,$huisNr,$telefoon;
     
-    public function __construct($id,$gemeente_id,$email,$paswoord,$salt,$registratiedatum,$vnaam,$anaam,$leveradres,$huisNr,$telefoon) {
+    public function __construct($id,$gemeente_id,$email,$paswoord,$registratiedatum,$vnaam,$anaam,$leveradres,$huisNr,$telefoon) {
         $this->id = $id;
         $this->gemeente_id = $gemeente_id;
         $this->email = $email;
@@ -34,10 +34,6 @@ class Account {
     
     public function getPaswoord() {
         return $this->paswoord;
-    }
-    
-    public function getSalt() {
-        return $this->salt;
     }
     
     public function getRegistratiedatum() {
@@ -74,10 +70,6 @@ class Account {
     
     public function setPaswoord($paswoord) {
         $this->paswoord = $paswoord;
-    }
-    
-    public function setSalt($salt) {
-        $this->salt = $salt;
     }
     
     public function setRegistratiedatum($registratiedatum) {

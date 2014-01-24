@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 use Doctrine\Common\ClassLoader;
 
 require_once('Doctrine/Common/ClassLoader.php');
@@ -20,7 +21,7 @@ if (isset($_POST["reg"])) {
     $number = $result[0] + 1;
     $id = $obf->encode($result[0] + 1);
 
-    $options = array('cost' => 11);
+    $options = array('cost' => 11); //Meer duurt te lang.
     $pwData = password_hash($_POST["paswoord"], PASSWORD_BCRYPT, $options);
 
     $vnaam = $_POST["vnaam"];
@@ -33,7 +34,12 @@ if (isset($_POST["reg"])) {
     $huisNr = $_POST["huisnr"];
     $telefoon = $_POST["telefoon"];
 
-    Business\AccountService::addAccount($vnaam, $anaam, $email, $paswoord, $straat, $huisnr, $postcode, $telefoon);
+    try {
+        Business\AccountService::addAccount($id, $vnaam, $anaam, $email, $pwData, $leveradres, $huisNr, $gemeente_id, $registratiedatum, $telefoon);
+    } catch (Exception $e) {
+        echo 'Exception -> ';
+        var_dump($e->getMessage());
+    }
 }
 
 

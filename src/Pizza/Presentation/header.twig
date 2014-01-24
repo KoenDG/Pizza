@@ -2,3 +2,14 @@
     <h3><span>Pizza Logo</span></h3>
     <p>Generieke Online Pizzawinkel.</p>
 </header>
+<section id="headerLinks">
+    <ul>
+        <li><a href="bestel.php">Home</a></li>
+        {% if loggedin == false %}
+        <li><a href="login.php">Login</a></li>
+        <li><a href="registreren.php">Registreren</a></li>
+        {% else %}
+        <li><a href="logout.php">Logout</a></li>
+        {% endif %}
+    </ul>
+</section>
