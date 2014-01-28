@@ -36,6 +36,8 @@ if (isset($_POST["login"])) {
         if (password_verify($pw, $data["pw"])) {
             $account = Business\AccountService::getAccount($data);
             $_SESSION["user"] = serialize($account);
+            header("Location: bestel.php");
+            die(0);
         } else {
             throw new Exception("Paswoord fout");
         }

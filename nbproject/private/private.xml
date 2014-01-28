@@ -3,17 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Pizza/src/Pizza/Presentation/registratie.twig</file>
-            <file>file:/C:/xampp/htdocs/Pizza/src/Pizza/Business/GemeenteService.php</file>
             <file>file:/C:/xampp/htdocs/Pizza/registreren.php</file>
             <file>file:/C:/xampp/htdocs/Pizza/src/Pizza/Business/AccountService.php</file>
+            <file>file:/C:/xampp/htdocs/Pizza/bestel.php</file>
             <file>file:/C:/xampp/htdocs/Pizza/index.php</file>
-            <file>file:/C:/xampp/htdocs/Pizza/src/Pizza/Data/GemeenteDAO.php</file>
-            <file>file:/C:/xampp/htdocs/Pizza/Libraries/PWHash/password.php</file>
-            <file>file:/C:/xampp/htdocs/Pizza/src/css/registreren.css</file>
+            <file>file:/C:/xampp/htdocs/Pizza/src/Pizza/Presentation/gemeenteCode.twig</file>
+            <file>file:/C:/xampp/htdocs/Pizza/login.php</file>
             <file>file:/C:/xampp/htdocs/Pizza/src/Pizza/Data/AccountDAO.php</file>
-            <file>file:/C:/xampp/htdocs/Pizza/src/css/global.css</file>
-            <file>file:/C:/xampp/htdocs/Pizza/src/Pizza/Presentation/header.twig</file>
+            <file>file:/C:/xampp/htdocs/Pizza/src/Pizza/Entities/Account_public.php</file>
+            <file>file:/C:/xampp/htdocs/Pizza/logout.php</file>
+            <file>file:/C:/xampp/htdocs/Pizza/src/Pizza/Presentation/bestel.twig</file>
         </group>
     </open-files>
 </project-private>

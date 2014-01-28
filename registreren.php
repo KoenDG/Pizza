@@ -36,6 +36,8 @@ if (isset($_POST["reg"])) {
 
     try {
         Business\AccountService::addAccount($id, $vnaam, $anaam, $email, $pwData, $leveradres, $huisNr, $gemeente_id, $registratiedatum, $telefoon);
+        header("Location: login.php");
+        die(0);
     } catch (Exception $e) {
         echo 'Exception -> ';
         var_dump($e->getMessage());

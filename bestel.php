@@ -10,9 +10,24 @@ $classLoader->register();
 require_once('Libraries/Twig/Autoloader.php');
 Twig_Autoloader::register();
 
+use Pizza\Business;
+
+if (isset($_POST["best"])) {
+    $amountCheese = $_POST["cheese"];
+    $amountHawai = $_POST["hawai"];
+    $amountMargherita = $_POST["margherita"];
+    $amountPepperoni = $_POST["pepperoni"];
+    
+    $user = unserialize($_SESSION["user"]);
+    
+    $insertedId = Business\BestelService::addBestelling($user->getId());
+    
+    Business\BestelService::addDetails($insertedId, $amountCheese, $amountHawai, $amountMargherita, $amountPepperoni);
+}
+
 $pizzas = array(array(
     "name" => "cheese",
-    "description" => "4 kazen pizza"
+    "description" => "Pizza 4 kazen"
 ),array(
     "name" => "hawai",
     "description" => "Pizza hawai"
@@ -26,5 +41,10 @@ $pizzas = array(array(
 
 $loader = new Twig_Loader_Filesystem("src/Pizza/Presentation");
 $twig = new Twig_Environment($loader);
-$view = $twig->render("bestel.twig",array("pizzas" => $pizzas));
+if(isset($_SESSION["user"])){
+    $view = $twig->render("bestel.twig",array("pizzas" => $pizzas, "loggedin" => true));
+} else {
+    $view = $twig->render("bestel.twig",array("pizzas" => $pizzas));
+}
+
 print($view);

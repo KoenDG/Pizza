@@ -5,24 +5,107 @@
         <title>Bestellen</title>
         <link rel="stylesheet" href="src/css/reset.css">
         <link rel="stylesheet" href="src/css/global.css">
+        <link rel="stylesheet" href="src/css/bestel.css">
     </head>
     <body>
         {% include 'header.twig' %}
-            
         <section id="choices">
             {% for option in pizzas %}
-            <figure>
+            <figure id="{{option.name}}Img">
                 <img src="src/img/{{option.name}}.jpg" height="200" width="200" alt="{{option.name}}">
-                <figcaption>{{option.description}}</figcaption>
+                <figcaption>{{option.description}} <a href="#" class="counter min {{option.name}}">-1</a><a href="#" class="counter plus {{option.name}}">+1</a></figcaption>
             </figure>
             {% endfor %}
         </section>
         <aside id="basket">
             <form id="bestForm" method="POST" action="bestel.php">
-
+                <p class="formInput"><label for="cheese">Kaas: </label><input type="text" id="cheese" size="2" readonly name="cheese" value="0" /></p>
+                <p class="formInput"><label for="hawai">Hawai: </label><input type="text" id="hawai" size="2" readonly name="hawai" value="0" /></p>
+                <p class="formInput"><label for="margherita">Margherita: </label><input type="text" id="margherita" size="2" readonly name="margherita" value="0" /></p>
+                <p class="formInput"><label for="pepperoni">Pepperoni: </label><input type="text" id="pepperoni" size="2" readonly name="pepperoni" value="0" /></p>
                 <p class="formInput"><input type="submit" id="submit" name="submit" value="Verzenden" /></p>
-                <input type="hidden" name="reg" value="Verzenden" />
+                <input type="hidden" name="best" value="Verzenden" />
             </form>
         </aside>
     </body>
+    <script src=Libraries/Jquery/jquery-2.0.3.min.js ></script>
+    <script src=src/js/jquery.cookie.js></script>
+    <script>
+        $(document).ready(function() {
+            var amountCheese = 0, amountHawai = 0, amountMargherita = 0, amountPepperoni = 0;
+            
+            //preventDefault werkt blijkbaar enkel op de actie zelf. Deze functie bij de mousedown en mouseup functies zetten heeft niet het nodige effect.
+            $(".counter").on('click', function(e){
+                e.preventDefault();
+            });
+            
+            $("a.counter").on('mouseup', function() {
+                if(this.classList.contains('plus')) {
+                    //De volgorde van klassen uit het element blijft behouden. Het is een array, dus begint bij 0.
+                    plus(this.classList[2]);
+                } else {
+                    min(this.classList[2]);
+                }
+            });
+            
+            //$('#bestForm').submit(function(e) {
+            //    e.preventDefault();
+            //});
+            
+            var plus = function(pizzaSoort) {
+                switch(pizzaSoort) {
+                    case "cheese":
+                        amountCheese +=1;
+                        break;
+                    case "hawai":
+                        amountHawai +=1;
+                        break;
+                    case "margherita":
+                        amountMargherita +=1;
+                        break;
+                    case "pepperoni":
+                        amountPepperoni +=1;
+                        break;
+                }
+                
+                updateAmounts();
+            };
+            
+            var min = function(pizzaSoort) {
+                switch(pizzaSoort) {
+                    case "cheese":
+                        if(amountCheese > 0) {
+                            amountCheese -=1;
+                        }
+                        break;
+                    case "hawai":
+                        if(amountHawai > 0) {
+                            amountHawai -=1;
+                        }
+                        break;
+                    case "margherita":
+                        if(amountMargherita > 0) {
+                            amountMargherita -=1;
+                        }
+                        break;
+                    case "pepperoni":
+                        if(amountPepperoni > 0) {
+                            amountPepperoni -=1;
+                        }
+                        break;
+                }
+                
+                updateAmounts();
+            };
+            
+            var updateAmounts = function() {
+                $("#cheese").attr('value',amountCheese);
+                $("#hawai").attr('value',amountHawai);
+                $("#margherita").attr('value',amountMargherita);
+                $("#pepperoni").attr('value',amountPepperoni);
+            };
+            
+            updateAmounts();
+        });
+    </script>
 </html>

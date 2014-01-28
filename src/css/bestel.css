@@ -1,0 +1,35 @@
+#choices {
+    width: 300px;
+    display: inline-block;
+    margin-left: 200px;
+    margin-top: 40px;
+}
+
+#choices figcaption {
+    width: 200px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+#basket {
+    width: 200px;
+    position: fixed;
+    top: 100px;
+    right: 10px;
+}
+
+.counter {
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEE;
+    color: #333;
+    padding: 2px 6px;
+    border-top: 1px outset #CCC;
+    border-right: 1px outset #333;
+    border-bottom: 1px outset #333;
+    border-left: 1px outset #CCC;
+}
+
+.counter:active {
+    border-style: inset;
+}
