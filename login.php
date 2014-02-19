@@ -1,13 +1,6 @@
 <?php
 
 session_start();
-if(!isset($_COOKIE["PHPSESSID"])) {
-    //We zijn op deze pagina gekomen vanuit een niet-ingelogde status.
-} elseif($_COOKIE["PHPSESSID"] != session_id()) {
-    //Als de sessie niet meer klopt met die op de server, loggen we uit.
-    require("logout.php");
-}
-
 if(isset($_SESSION["user"])) {
     //We are logged in. No reason to be here.
     header('Location: bestel.php');
@@ -27,9 +20,20 @@ use Pizza\Business;
 
 require_once './Libraries/PWHash/password.php';
 
+if(isset($_GET["err"])){
+    if("login" == $_GET["err"]) {
+        $error = array("error" => "Login niet herkend.");
+    }
+}
+
 if (isset($_POST["login"])) {
     $email = $_POST["email"];
     $pw = $_POST["paswoord"];
+    
+    if(empty($email) || empty($pw)) {
+        header("Location: login.php?err=login");
+        die(0);
+    }
 
     try {
         $data = Business\AccountService::processLogin($email);
@@ -42,13 +46,16 @@ if (isset($_POST["login"])) {
             throw new Exception("Paswoord fout");
         }
     } catch (Exception $e) {
-        echo 'Exception -> ';
-        var_dump($e->getMessage());
+        $error = array("error"=>$e->getMessage());
     }
 }
 
 
 $loader = new Twig_Loader_Filesystem("src/Pizza/Presentation");
 $twig = new Twig_Environment($loader);
-$view = $twig->render("login.twig");
+if(empty($error)){
+    $view = $twig->render("login.twig");
+} else {
+    $view = $twig->render("login.twig", array("errors" => $error));
+}
 print($view);

@@ -26,28 +26,35 @@ class BestelDAO {
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $query = "INSERT INTO `bestelling_details`(`Bestellingen_id`, `Pizzas_id`, `aantal`) VALUES ";
         
+        //Dit gebruiken we voor meerdere pizzas toe te voegen. Is er al 1 geset, dan moet er een nieuwe set values in de tabel en dus moet er een komma in komen.
+        $priorset = false;
+        
         //dit lijkt mij nodeloos ingewikkeld, maar ik zie geen andere manier
         if($amountCheese!=0){
             $query .= "(:bestelling_id,:kaas_id,:aantalKaas)";
+            $priorset = true;
         }
         if($amountHawai!=0){
             //Er wordt gekeken of de vorige toegevoegd is of niet. Zo ja, moet er een komma bij.
-            if($amountCheese!=0) {
+            if($priorset) {
                 $query .= ",";
             }
             $query .= "(:bestelling_id,:hawai_id,:aantalHawai)";
+            $priorset = true;
         }
         if($amountMargherita!=0){
-            if($amountHawai!=0) {
+            if($priorset) {
                 $query .= ",";
             }
             $query .= "(:bestelling_id,:margherita_id,:aantalMargherita)";
+            $priorset = true;
         }
         if($amountPepperoni!=0){
-            if($amountMargherita!=0) {
+            if($priorset) {
                 $query .= ",";
             }
             $query .= "(:bestelling_id,:pepperoni_id,:aantalPepperoni)";
+            $priorset = true;
         }
         
         

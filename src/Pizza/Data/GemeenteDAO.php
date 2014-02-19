@@ -44,9 +44,14 @@ class GemeenteDAO {
         $resultSet = $sth->fetchAll(PDO::FETCH_ASSOC);
         
         //Onbestaande code zal geen resultaat opleveren. We stoppen de verdere uitvoering en geven meteen een fout terug.
+        
+        //Dit was een slechte beslissing, die exception zou elders moeten opgeworpen worden.
+        //Het moment dat een verouderde browser die "required" niet support dit leeg verzend wordt de error opgeworpen.
+        
         if(empty($resultSet)) {
-            throw new Exceptions\FoutePostCodeException('Deze postcode geeft geen resultaten weer');
-        }
+            return null;
+            //throw new Exceptions\FoutePostCodeException('Deze postcode geeft geen resultaten weer');
+       }
         
         foreach ($resultSet as $rij) {
             $gemeente = new Entities\Gemeente($rij["id"], $rij["naam"], $rij["code"], $rij["leverbaar"]);

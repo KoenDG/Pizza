@@ -17,6 +17,7 @@ class GemeenteService {
     }
     
     public static function getByCode($code) {
+        //Return is een array, omdat meerdere gemeentes bij éénzelfde postcode passen.
         $lijst = Data\GemeenteDAO::getAllByCode($code);
         return $lijst;
     }

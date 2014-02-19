@@ -1,6 +1,12 @@
 <?php
 
 session_start();
+if(!isset($_SESSION["user"])){
+    //If we're logged in, why are we registering? Back to the home page.
+    header("Location: login.php");
+    die(0);
+}
+
 use Doctrine\Common\ClassLoader;
 
 require_once('Doctrine/Common/ClassLoader.php');

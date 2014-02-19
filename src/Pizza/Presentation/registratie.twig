@@ -12,18 +12,19 @@
         <div id="regSection">
             <form id="regForm" method="POST" action="registreren.php">
                 <fieldset>
-                    <legend>Registratieformulier</legend>
-                    <p class="formInput"><label for="vnaam">Voornaam: </label><input autofocus type="text" id="vnaam" name="vnaam" /></p>
-                    <p class="formInput"><label for="anaam">Achternaam: </label><input type="text" id="anaam" name="anaam" /></p>
-                    <p class="formInput"><label for="email">Email: </label><input type="email" id="email" name="email" /></p>
-                    <p class="formInput"><label for="paswoord">Paswoord: </label><input type="password" id="paswoord" name="paswoord" /></p>
-                    <p class="formInput"><label for="straat">Straatnaam: </label><input type="text" id="straat" name="straat" /></p>
-                    <p class="formInput"><label for="huisnr">Nummer: </label><input type="text" id="huisnr" name="huisnr" /></p>
-                    <p class="formInput"><label for="postcode">Postcode: </label><input type="number" id="postcode" name="postcode" /></p>
-                    <p class="formInput"><label for="telefoon">Telefoon: </label><input type="tel" id="telefoon" name="telefoon" /></p>
+                    <legend>Registratieformulier (* is verplicht)</legend>
+                    <p class="formInput"><label for="vnaam">Voornaam: </label><input required autofocus type="text" id="vnaam" name="vnaam" /><span class="required">*</span></p>
+                    <p class="formInput"><label for="anaam">Achternaam: </label><input required type="text" id="anaam" name="anaam" /><span class="required">*</span></p>
+                    <p class="formInput"><label for="email">Email: </label><input required type="email" id="email" name="email" /><span class="required">*</span></p>
+                    <p class="formInput"><label for="paswoord">Paswoord: </label><input required type="password" id="paswoord" name="paswoord" /><span class="required">*</span></p>
+                    <p class="formInput"><label for="straat">Straatnaam: </label><input required type="text" id="straat" name="straat" /><span class="required">*</span></p>
+                    <p class="formInput"><label for="huisnr">Nummer: </label><input required type="text" id="huisnr" name="huisnr" /><span class="required">*</span></p>
+                    <p class="formInput"><label for="postcode">Postcode: </label><input required type="number" id="postcode" name="postcode" /><span class="required">*</span></p>
+                    <p class="formInput"><label for="telefoon">Telefoon: </label><input required type="tel" id="telefoon" name="telefoon" /><span class="required">*</span></p>
                     <p class="formInput"><input type="submit" id="submit" name="submit" value="Verzenden" /></p>
                     <input type="hidden" name="reg" value="Verzenden" />
                 </fieldset>
+                <span>{{ errors.error }}</span>
             </form>
         </div>
     </body>

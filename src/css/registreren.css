@@ -2,7 +2,7 @@ fieldset {
     overflow: hidden;
     margin-bottom: 5px;
     display: inline-block;
-    width: 270px;
+    width: 280px;
     border: 0;
 }
 
@@ -13,4 +13,8 @@ input { width: 120px; }
 #regSection, #logSection {
     width: 270px;
     margin: 0 auto;
+}
+
+.required {
+    color: #000
 }
